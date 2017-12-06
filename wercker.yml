@@ -42,7 +42,6 @@ push-release:
         ports: $PORT
         env: PORT=$PORT
         cmd: node server.js
-        repository: wcr.io/derekoneil/product-catalog-ui
 
 #delete any existing Wercker secret before creating, to accommodate secret changes
 inject-secret:
