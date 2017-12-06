@@ -1,0 +1,44 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: product-catalog-ui
+  labels:
+    commit: ${WERCKER_GIT_COMMIT}
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: product-catalog-ui
+  template:
+    metadata:
+      labels:
+        app: product-catalog-ui
+        commit: ${WERCKER_GIT_COMMIT}
+    spec:
+      containers:
+      - name: product-catalog-ui-container
+        image: ${DOCKER_REPO}:${WERCKER_GIT_BRANCH}-${WERCKER_GIT_COMMIT}
+        imagePullPolicy: Always
+        ports:
+        - name: pc-ui-port
+          containerPort: 80
+          protocol: TCP
+      imagePullSecrets:
+        - name: wercker
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: product-catalog-ui-service
+  labels:
+    app: product-catalog-ui
+    commit: ${WERCKER_GIT_COMMIT}
+spec:
+  ports:
+  - port: 30000
+    targetPort: 80
+  selector:
+    app: product-catalog-ui
+    commit: ${WERCKER_GIT_COMMIT}
+  type: LoadBalancer
+---

@@ -8,7 +8,8 @@
         "prepublish": "zip -r target/msdbw-microserviceui.zip node_modules public manifest.json *.js"
     },
     "dependencies": {
-        "express": "^4.13.4"
+        "express": "^4.13.4",
+        "request": "latest"
     },
     "engines": {
         "node": ">=0.12.0"
