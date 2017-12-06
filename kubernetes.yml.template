@@ -21,7 +21,7 @@ spec:
         imagePullPolicy: Always
         ports:
         - name: pc-app-port
-          containerPort: 80
+          containerPort: ${PORT}
           protocol: TCP
       imagePullSecrets:
         - name: wercker
@@ -36,7 +36,7 @@ metadata:
 spec:
   ports:
   - port: 30000
-    targetPort: 80
+    targetPort: ${PORT}
   selector:
     app: product-catalog-app
     commit: ${WERCKER_GIT_COMMIT}
