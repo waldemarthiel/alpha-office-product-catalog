@@ -73,7 +73,7 @@ app.get('/product/:id', function(req, res) {
 
 app.listen(PORT, function() {
 	console.log('AlphaOffice listening on port ' + PORT);
-	http.get('statictweets', res => {
+	http.get('/statictweets', res => {
     res.setEncoding("utf8");
     let body = "";
     res.on("data", data => {
