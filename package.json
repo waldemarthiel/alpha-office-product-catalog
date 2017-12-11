@@ -5,7 +5,7 @@
     "main": "server.js",
     "author": "john.hennen@oracle.com",
     "scripts": {
-        "prepublish": "zip -r target/msdbw-microserviceui.zip node_modules public manifest.json *.js"
+        "prepublish": "zip -r target/msdbw-microserviceui.zip node_modules public manifest.json *.js *.json"
     },
     "dependencies": {
         "express": "^4.13.4",
