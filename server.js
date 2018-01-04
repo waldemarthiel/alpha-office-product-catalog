@@ -22,7 +22,7 @@ app.get('/', function (req, res) {
 
 app.get('/statictweets/:search', function (req, res) {
 
-      request('http://twitter-feed:30000/statictweets/' + req.params.search, function (error, response, body) {
+      request('http://twitter-feed:8080/statictweets/' + req.params.search, function (error, response, body) {
         console.log('error:', error);
         console.log('statusCode:', response && response.statusCode);
         console.log('body:', body);
