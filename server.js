@@ -21,7 +21,7 @@ app.get('/', function (req, res) {
 });
 
 app.get('/statictweets/:search', function (req, res) {
-
+      console.log('Calling twitter feed service at: ' + 'http://twitter-feed:30000/statictweets/' + req.params.search);
       request('http://twitter-feed:30000/statictweets/' + req.params.search, function (error, response, body) {
         console.log('error:', error);
         console.log('statusCode:', response && response.statusCode);
