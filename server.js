@@ -6,6 +6,7 @@ var request = require('request');
 var path = require('path');
 var bodyParser = require('body-parser')
 var fs = require('fs')
+var spawn = require('child_process')
 var hostString = process.argv[2]
 var PORT = process.env.PORT || 8085;
 var app = express();
@@ -29,6 +30,10 @@ app.get('/statictweets/:search', function (req, res) {
           res.end(body);
         });
 });
+
+app.get('/color'), function(req, res) {
+    res.end(spawn.execSync("cat /tmp/labels | grep -Po '(?<=color=\")\w+'"));
+};
 
 /*
  * route /products has been replaced in this example with static JSON data

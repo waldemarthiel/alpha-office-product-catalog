@@ -14,6 +14,7 @@ spec:
       labels:
         app: product-catalog-ui
         commit: ${WERCKER_GIT_COMMIT}
+        color: green
     spec:
       containers:
       - name: product-catalog-ui-container
