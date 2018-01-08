@@ -22,8 +22,8 @@ app.get('/', function (req, res) {
 });
 
 app.get('/statictweets/:search', function (req, res) {
-
-      request('http://twitter-feed:30000/statictweets/' + req.params.search, function (error, response, body) {
+      console.log('Calling twitter feed service at: ' + 'http://twitter-feed:30000/statictweets/' + encodeURIComponent(req.params.search));
+      request('http://twitter-feed:30000/statictweets/' + encodeURIComponent(req.params.search), function (error, response, body) {
         console.log('error:', error);
         console.log('statusCode:', response && response.statusCode);
         console.log('body:', body);
@@ -78,15 +78,5 @@ app.get('/product/:id', function(req, res) {
 
 app.listen(PORT, function() {
 	console.log('AlphaOffice listening on port ' + PORT);
-	http.get('twitter-feed/statictweets', res => {
-    res.setEncoding("utf8");
-    let body = "";
-    res.on("data", data => {
-      body += data;
-    });
-    res.on("end", () => {
-      console.log('found some tweets: ' + body);
-    });
-  });
 
 });
