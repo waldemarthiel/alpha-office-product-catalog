@@ -31,7 +31,7 @@ app.get('/statictweets/:search', function (req, res) {
         });
 });
 
-app.get('/twitter-feed/color'), function(req, res) {
+app.get('/color'), function(req, res) {
   request('http://twitter-feed:30000/statictweets/color', function (error, response, body) {
     console.log('error:', error);
     console.log('statusCode:', response && response.statusCode);
