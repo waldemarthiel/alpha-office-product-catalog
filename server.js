@@ -31,8 +31,13 @@ app.get('/statictweets/:search', function (req, res) {
         });
 });
 
-app.get('/color'), function(req, res) {
-    res.end(spawn.execSync("cat /tmp/labels | grep -Po '(?<=color=\")\w+'"));
+app.get('/twitter-feed/color'), function(req, res) {
+  request('http://twitter-feed:30000/statictweets/color', function (error, response, body) {
+    console.log('error:', error);
+    console.log('statusCode:', response && response.statusCode);
+    console.log('body:', body);
+      res.end(body);
+    });
 };
 
 /*
