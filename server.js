@@ -31,7 +31,7 @@ app.get('/statictweets/:search', function (req, res) {
         });
 });
 
-app.get('/color'), function(req, res) {
+app.get('/color', function(req, res) {
   console.log('getting color from twitter feed');
   request('http://twitter-feed:30000/statictweets/color', function (error, response, body) {
     console.log('error:', error);
@@ -39,7 +39,7 @@ app.get('/color'), function(req, res) {
     console.log('body:', body);
       res.end(body);
     });
-};
+});
 
 /*
  * route /products has been replaced in this example with static JSON data
