@@ -72,7 +72,7 @@ $(document).ready(function () {
         //Get deployment color from twitter feed and update title bar
         $.get('color', function(color) {
           if( color == 'blue' || color == 'green') {
-            $('#podColor').text(' - Served by a ' + color + ' Pod');
+            $('#podColor').text(' - Served by a ' + color + ' pod');
           }
         });
 
