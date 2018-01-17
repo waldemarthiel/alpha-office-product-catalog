@@ -48,24 +48,21 @@
         </table>
         <!-- IMPORTANT: Do not alter the table above.  See above.-->
 
+        <!-- action='http://localhost:8085/upload'
+        method='post'
+        encType="multipart/form-data"> -->
+
         <!-- All divs below hold html code that is extracted and dynamically written by javascript -->
         <div id="popupControlTdFillerDiv" class="fillerDiv">
             <div class="popupControlDiv">
-                <label id="tweetNumberLabel"></label><br />
-                <table class="popupControlTable">
-                    <tr class="regularTr">
-                        <td colspan="3" >Sort By</td>
-                    </tr>
-                    <tr class="regularTr">
-                        <td class="sortLabelTdLeft">Name</td>
-                        <td class="sortLabelTdMiddle">Text</td>
-                        <td class="sortLabelTdRight">Date</td>
-                    </tr>
-                    <tr>
-                        <td colspan="3"><input id="sortChoice" type="range" min="1" max="3" step="1" value="1" onmousemove="buildTwitterHTML(this.value)"/></td>
-                    </tr>
-                </table>
+                <label id="tweetNumberLabel">Upload an image:</label><br />
+                  <div id="image-uploader" style="display: flex; flex-direction: column; align-items: flex-start; height: 150px; text-align: left; line-height: 30px;">
+                    <form action="" method="post" enctype="multipart/form-data">
+                        <input type="file" name="sampleFile"/>
+                    </form>
+                  </div>
                 <button onclick="hidePopup()">Close</button>
+
             </div>
         </div>
 

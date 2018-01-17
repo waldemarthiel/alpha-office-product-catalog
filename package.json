@@ -9,7 +9,8 @@
     },
     "dependencies": {
         "express": "^4.13.4",
-        "request": "latest"
+        "request": "latest",
+        "express-fileupload": "latest"
     },
     "engines": {
         "node": ">=0.12.0"

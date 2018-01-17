@@ -45,7 +45,43 @@ var transitionCompletedVar;
 var hashtagVar;
 var tweetTableTemplateVar;
 
+
+
+// $(".uploadForm").submit((function(e) {
+function uploadImage(event) {
+    // e.preventDefault(); // avoid to execute the actual submit of the form.
+     $('#image-uploader').append('<img src="Images/ajax-loader.gif"/>');
+    var url = "http://localhost:8085/upload"; // the script where you handle the form input
+    var data = new FormData();
+    data.append('sampleFile', event.target.files[0]);
+
+    $.ajax({
+           type: "POST",
+           url: url,
+           data: data, // serializes the form's elements.
+           processData: false, // Don't process the files
+           contentType: false,
+           cache: false,
+           success: function(data)
+           {
+             var image = document.createElement("img");
+             image.src = 'data:image/png;base64,'+data;
+             $('#image-uploader > img').remove();
+             $('#image-uploader > h4').remove();
+             $('#image-uploader').append(image);
+           },
+           error: function(err) {
+             $('#image-uploader > img').remove();
+             $('#image-uploader > h4').remove();
+             $('#image-uploader').append('<h4>There was an error communicating with the thumbnail service.</h4>')
+           }
+         });
+
+
+};
+
 $(document).ready(function () {
+
     // If the dbServiceURL has not been changed ...
     if (dbServiceURL == "https://notactivated") {
         document.getElementById("productDiv").innerHTML = document.getElementById("noMySQLRESTURLFillerDiv").innerHTML;
@@ -258,6 +294,7 @@ function transitionSize() {
         document.getElementById("popupTwitterContentDiv").style.height = popupTwitterContentHeightVar + "px";
         document.getElementById("popupControlTd").innerHTML = document.getElementById("popupControlTdFillerDiv").innerHTML;
         transitionCompletedVar = true;
+        $(':file').change((e) => uploadImage(e));
         if (twitterDataLoadedVar) {
             buildTwitterHTML("1");
         }
