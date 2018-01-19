@@ -51,7 +51,7 @@ var tweetTableTemplateVar;
 function uploadImage(event) {
     // e.preventDefault(); // avoid to execute the actual submit of the form.
      $('#image-uploader').append('<img src="Images/ajax-loader.gif"/>');
-    var url = "http://localhost:8085/upload"; // the script where you handle the form input
+    var url = "upload"; // the script where you handle the form input
     var data = new FormData();
     data.append('sampleFile', event.target.files[0]);
 
