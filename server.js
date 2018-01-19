@@ -52,7 +52,7 @@ app.post('/upload', function(req, res) {
 
   const options = {
     method: 'POST',
-    uri: 'http://localhost:8080/r/imgconvert/resize128',
+    uri: 'http://my-release-fn-api/r/imgconvert/resize128',
     encoding: null,
     headers: {
       'Content-type': 'application/octet-stream'
