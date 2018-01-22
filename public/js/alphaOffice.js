@@ -406,7 +406,7 @@ function buildTwitterHTML(sortParm) {
     tweetString = tweetString + "<br /><br />";
     document.getElementById("popupTwitterContentDiv").innerHTML = tweetString;
     document.getElementById("popupTwitterContentDiv").scrollTo(0, 0);
-    document.getElementById("tweetNumberLabel").innerHTML = indexVar + " Tweets Total";
+    // document.getElementById("tweetNumberLabel").innerHTML = indexVar + " Tweets Total";
 }
 
 // Format the raw tweet text.
