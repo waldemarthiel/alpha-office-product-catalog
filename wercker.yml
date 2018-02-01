@@ -33,6 +33,8 @@ inject-secret:
     - kubectl:
         name: delete secret
         server: $KUBERNETES_MASTER
+        username: $USERNAME
+        password: $PASSWORD
         token: $TOKEN
         insecure-skip-tls-verify: true
         command: delete secret wercker; echo delete registry secret
@@ -40,6 +42,8 @@ inject-secret:
     - kubectl:
         name: create secret
         server: $KUBERNETES_MASTER
+        username: $USERNAME
+        password: $PASSWORD
         token: $TOKEN
         insecure-skip-tls-verify: true
         command: create secret docker-registry wercker --docker-server=$DOCKER_REGISTRY --docker-username=$DOCKER_USERNAME --docker-password=$KUBERNETES_TOKEN --docker-email=$DOCKER_EMAIL; echo create registry secret
@@ -59,7 +63,8 @@ deploy-to-cluster:
     - kubectl:
         name: deploy to kubernetes
         server: $KUBERNETES_MASTER
-        #username: $KUBERNETES_USERNAME
+        username: $USERNAME
+        password: $PASSWORD
         token: $TOKEN
         insecure-skip-tls-verify: true
         command: apply -f kubernetes.yml
