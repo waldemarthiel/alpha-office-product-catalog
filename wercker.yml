@@ -29,7 +29,15 @@ inject-secret:
         id: alpine
         cmd: /bin/sh
     steps:
-
+    
+    - script: 
+        name: create kubeconfig file
+        code: echo $KUBECONFIG > /tmp/kubeconfig
+        
+    - script: 
+        name: set kubeconfig env var
+        code: export KUBECONFIG=/tmp/kubeconfig
+        
     - kubectl:
         name: delete secret
         server: $KUBERNETES_MASTER
@@ -49,7 +57,15 @@ deploy-to-cluster:
         id: alpine
         cmd: /bin/sh
     steps:
-
+    
+    - script: 
+        name: create kubeconfig file
+        code: echo $KUBECONFIG > /tmp/kubeconfig
+        
+    - script: 
+        name: set kubeconfig env var
+        code: export KUBECONFIG=/tmp/kubeconfig
+        
     - bash-template
 
     - script:
