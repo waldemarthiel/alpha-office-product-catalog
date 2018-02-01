@@ -30,6 +30,16 @@ inject-secret:
         cmd: /bin/sh
     steps:
     
+    - script:
+        name: kubeconfig
+        code: echo $KUBECONF > /kubeconfig
+    
+    - script:
+        name: set kc env var
+        code: |
+            export KUBECONFIG=/kubeconfig
+            echo $KUBECONFIG
+            cat $KUBECONFIG
     - kubectl:
         name: delete secret
         server: $KUBERNETES_MASTER
@@ -44,7 +54,7 @@ inject-secret:
         server: $KUBERNETES_MASTER
         #username: $USERNAME
         #password: $PASSWORD
-        token: $TOKEN
+        #token: $TOKEN
         insecure-skip-tls-verify: true
         command: create secret docker-registry wercker --docker-server=$DOCKER_REGISTRY --docker-username=$DOCKER_USERNAME --docker-password=$KUBERNETES_TOKEN --docker-email=$DOCKER_EMAIL; echo create registry secret
 
