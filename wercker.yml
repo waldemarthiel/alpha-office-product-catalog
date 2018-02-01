@@ -30,25 +30,17 @@ inject-secret:
         cmd: /bin/sh
     steps:
     
-    - script: 
-        name: create kubeconfig file
-        code: echo $KUBECONFIG > /tmp/kubeconfig
-        
-    - script: 
-        name: set kubeconfig env var
-        code: export KUBECONFIG=/tmp/kubeconfig
-        
     - kubectl:
         name: delete secret
         server: $KUBERNETES_MASTER
-        token: $KUBERNETES_TOKEN
+        token: $TOKEN
         insecure-skip-tls-verify: true
         command: delete secret wercker; echo delete registry secret
 
     - kubectl:
         name: create secret
         server: $KUBERNETES_MASTER
-        token: $KUBERNETES_TOKEN
+        token: $TOKEN
         insecure-skip-tls-verify: true
         command: create secret docker-registry wercker --docker-server=$DOCKER_REGISTRY --docker-username=$DOCKER_USERNAME --docker-password=$KUBERNETES_TOKEN --docker-email=$DOCKER_EMAIL; echo create registry secret
 
@@ -57,15 +49,7 @@ deploy-to-cluster:
         id: alpine
         cmd: /bin/sh
     steps:
-    
-    - script: 
-        name: create kubeconfig file
-        code: echo $KUBECONFIG > /tmp/kubeconfig
-        
-    - script: 
-        name: set kubeconfig env var
-        code: export KUBECONFIG=/tmp/kubeconfig
-        
+
     - bash-template
 
     - script:
@@ -76,6 +60,6 @@ deploy-to-cluster:
         name: deploy to kubernetes
         server: $KUBERNETES_MASTER
         #username: $KUBERNETES_USERNAME
-        token: $KUBERNETES_TOKEN
+        token: $TOKEN
         insecure-skip-tls-verify: true
         command: apply -f kubernetes.yml
