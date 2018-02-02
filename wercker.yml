@@ -17,6 +17,7 @@ build:
 push-release:
   steps:
     - internal/docker-push:
+        email: $DOCKER_EMAIL
         username: $DOCKER_USERNAME
         password: $DOCKER_PASSWORD
         repository: $DOCKER_REPO
