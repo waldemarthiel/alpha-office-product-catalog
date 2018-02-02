@@ -18,7 +18,7 @@ push-release:
   steps:
     - internal/docker-push:
         username: $DOCKER_USERNAME
-        password: $PASSWORD
+        password: $DOCKER_PASSWORD
         repository: derekoneil/alpha-office-product-catalog
         registry: https://registry.hub.docker.com
         tag: $WERCKER_GIT_BRANCH-$WERCKER_GIT_COMMIT
