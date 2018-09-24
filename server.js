@@ -84,24 +84,25 @@ app.post('/upload', function(req, res) {
     }
     else if(response && response.statusCode == 404) {
     	const options2 = {
-	    method: 'POST',
-	    uri: 'http://my-release-fn-api/t/imgconvert/resize128',
-	    encoding: null,
-	    headers: {
-	      'Content-type': 'application/octet-stream'
-	    },
-	    body: sampleFile.data
-	};
-	request(options2, function(error, response, body) {
-		
-		if (response && response.statusCode == 200) {
-			res.send(body.toString('base64'));
-		}
-		else {
-		      res.status(500);
-		      res.end();
-		    }
-	}
+  	    method: 'POST',
+  	    uri: 'http://my-release-fn-api/t/imgconvert/resize128',
+  	    encoding: null,
+  	    headers: {
+  	      'Content-type': 'application/octet-stream'
+  	    },
+  	    body: sampleFile.data
+    	};
+      
+    	request(options2, function(error, response, body) {
+    		
+    		if (response && response.statusCode == 200) {
+    			res.send(body.toString('base64'));
+    		}
+    		else {
+    		      res.status(500);
+    		      res.end();
+    		    }
+    	});
     }
     else {
       res.status(500);
