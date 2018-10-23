@@ -44,8 +44,11 @@ app.get('/color', function(req, res) {
 });
 
 app.post('/upload', function(req, res) {
-  if (!req.files)
+	console.log('inside upload function');
+  if (Object.keys(req.files).length == 0) {
+	  console.log('no files uploaded');
     return res.status(400).send('No files were uploaded.');
+  }
   console.log('processing file upload');
   // The name of the input field (i.e. "sampleFile") is used to retrieve the uploaded file
   let sampleFile = req.files.sampleFile;
