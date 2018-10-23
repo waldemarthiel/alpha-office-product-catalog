@@ -83,6 +83,10 @@ app.post('/upload', function(req, res) {
       });
     }
     else {
+	    
+      console.log('Status Code: ' + response.statusCode);
+	    
+      console.log('Body: ' + response.body);
       res.status(500);
       res.end();
     }
