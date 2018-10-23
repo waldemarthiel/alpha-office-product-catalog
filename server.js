@@ -14,7 +14,7 @@ var app = express();
 
 var myJSON = JSON.parse(fs.readFileSync('product-catalog.json'));
 
-app.use(bodyParser.json())
+//app.use(bodyParser.json())
 app.use(fileUpload());
 // app.use(express.static(__dirname))
 app.use(express.static('./public'));
@@ -138,5 +138,5 @@ app.get('/product/:id', function(req, res) {
 
 app.listen(PORT, function() {
 	console.log('AlphaOffice listening on port ' + PORT);
-
+	console.log('not using body parser');
 });
