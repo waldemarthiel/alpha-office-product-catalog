@@ -52,7 +52,7 @@ app.post('/upload', function(req, res) {
 
   const options = {
     method: 'POST',
-    uri: 'http://my-release-fn-api/r/imgconvert/resize128',
+    uri: 'http://my-release-fn-api/t/imgconvert/resize128',
     encoding: null,
     headers: {
       'Content-type': 'application/octet-stream'
@@ -81,28 +81,6 @@ app.post('/upload', function(req, res) {
           // res.sendFile('thumbnail.png', options);
           res.send(body.toString('base64'));
       });
-    }
-    else if(response && response.statusCode == 404) {
-    	const options2 = {
-  	    method: 'POST',
-  	    uri: 'http://my-release-fn-api/t/imgconvert/resize128',
-  	    encoding: null,
-  	    headers: {
-  	      'Content-type': 'application/octet-stream'
-  	    },
-  	    body: sampleFile.data
-    	};
-      
-    	request(options2, function(error, response, body) {
-    		
-    		if (response && response.statusCode == 200) {
-    			res.send(body.toString('base64'));
-    		}
-    		else {
-    		      res.status(500);
-    		      res.end();
-    		    }
-    	});
     }
     else {
       res.status(500);
