@@ -12,7 +12,7 @@ var hostString = process.argv[2]
 var PORT = process.env.PORT || 8085;
 var app = express();
 var twitterFeedService = process.env.TWITTER_FEED || "twitter-feed";
-var twitterFeedPort = process.env.TWITTER_FEED_PORT || 30000;
+var twitterFeedPort = process.env.TWITTER_FEED_PORT || "30000";
 
 var myJSON = JSON.parse(fs.readFileSync('product-catalog.json'));
 
