@@ -24,7 +24,7 @@ push-release:
         tag: $WERCKER_GIT_BRANCH-$WERCKER_GIT_COMMIT
         working-dir: /pipeline/source
         ports: $PORT
-        env: PORT=$PORT TWITTER_FEED=$TWITTER_FEED TWITTER_FEED_PORT=$TWITTER_FEED_PORT
+        env: PORT=$PORT TWITTER_FEED=$TWITTER_FEED
         cmd: node server.js
 
 #Inject our Wercker application token into Kubernetes to authenticate container pulls
