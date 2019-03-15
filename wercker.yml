@@ -28,7 +28,7 @@ push-release:
         cmd: node server.js
 
 #Inject our Wercker application token into Kubernetes to authenticate container pulls
-#delete any existing Wercker secret before creating, to accommodate secret changes 
+#delete any existing Wercker secret before creating, to accommodate secret changes  
 inject-secret:
     box:
         id: alpine
