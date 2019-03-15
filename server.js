@@ -26,6 +26,8 @@ app.get('/', function (req, res) {
 });
 
 app.get('/statictweets/:search', function (req, res) {
+      console.log('Feed service is: ' +twitterFeedService);
+      console.log('Feed port is: ' + twitterFeedPort);
       console.log('Calling twitter feed service at: ' + 'http://'+ twitterFeedService + ':' + twitterFeedPort + '/statictweets/' + encodeURIComponent(req.params.search));
       request('http://' + twitterFeedService + ':' + twitterFeedPort + '/statictweets/' + encodeURIComponent(req.params.search), function (error, response, body) {
         console.log('error:', error);
