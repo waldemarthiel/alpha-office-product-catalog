@@ -24,11 +24,11 @@ push-release:
         tag: $WERCKER_GIT_BRANCH-$WERCKER_GIT_COMMIT
         working-dir: /pipeline/source
         ports: $PORT
-        env: PORT=$PORT
+        env: PORT=$PORT TWITTER_FEED=$TWITTER_FEED
         cmd: node server.js
 
 #Inject our Wercker application token into Kubernetes to authenticate container pulls
-#delete any existing Wercker secret before creating, to accommodate secret changes
+#delete any existing Wercker secret before creating, to accommodate secret changes 
 inject-secret:
     box:
         id: alpine
@@ -45,7 +45,7 @@ inject-secret:
         server: $KUBERNETES_MASTER
         token: $KUBERNETES_TOKEN
         insecure-skip-tls-verify: true
-        command: create secret docker-registry wercker --docker-server=$DOCKER_REGISTRY --docker-username=$DOCKER_USERNAME --docker-password=$KUBERNETES_TOKEN --docker-email=$DOCKER_EMAIL; echo create registry secret
+        command: create secret docker-registry wercker --docker-server=$DOCKER_REGISTRY --docker-username=$DOCKER_USERNAME --docker-password=$DOCKER_PASSWORD --docker-email=$DOCKER_EMAIL; echo create registry secret
 
 deploy-to-cluster:
     box:
