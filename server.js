@@ -11,7 +11,8 @@ var fileUpload = require('express-fileupload');
 var hostString = process.argv[2]
 var PORT = process.env.PORT || 8085;
 var app = express();
-var twitterFeedService = process.env.TWITTER_FEED || "twitter-feed:30000";
+var twitterFeedService = process.env.TWITTER_FEED || "twitter-feed";
+var twitterFeedServicePort = process.env.TWITTER_SERVICE_PORT || 30000;
 
 var myJSON = JSON.parse(fs.readFileSync('product-catalog.json'));
 
@@ -25,8 +26,8 @@ app.get('/', function (req, res) {
 });
 
 app.get('/statictweets/:search', function (req, res) {
-      console.log('Calling twitter feed service at: ' + 'http://'+ twitterFeedService + '/statictweets/' + encodeURIComponent(req.params.search));
-      request('http://' + twitterFeedService + '/statictweets/' + encodeURIComponent(req.params.search), function (error, response, body) {
+      console.log('Calling twitter feed service at: ' + 'http://'+ twitterFeedService + ':' + twitterFeedServicePort + '/statictweets/' + encodeURIComponent(req.params.search));
+      request('http://' + twitterFeedService + ':' + twitterFeedServicePort + '/statictweets/' + encodeURIComponent(req.params.search), function (error, response, body) {
         console.log('error:', error);
         console.log('statusCode:', response && response.statusCode);
         console.log('body:', body);
@@ -36,7 +37,7 @@ app.get('/statictweets/:search', function (req, res) {
 
 app.get('/color', function(req, res) {
   console.log('getting color from twitter feed');
-  request('http://' + twitterFeedService + '/statictweets/color', function (error, response, body) {
+  request('http://' + twitterFeedService + ':' + twitterFeedServicePort + '/statictweets/color', function (error, response, body) {
     console.log('error:', error);
     console.log('statusCode:', response && response.statusCode);
     console.log('body:', body);
